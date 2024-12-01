@@ -44,7 +44,11 @@ target_include_directories(${TARGET_NAME}
     ${TARGET_INCLUDE_FOLDER}
     ${CMAKE_CURRENT_SOURCE_DIR}/../hellolib/include
     # Any other extra include required
+    ${Boost_INCLUDE_DIRS}
 )
 
 # link against hellolib
-target_link_libraries(${TARGET_NAME} PUBLIC hellolib)
+target_link_libraries(${TARGET_NAME} 
+  PUBLIC 
+    hellolib
+    ${Boost_LIBRARIES})
