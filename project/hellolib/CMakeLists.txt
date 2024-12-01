@@ -55,6 +55,7 @@ target_include_directories(${TARGET_NAME}
     ${TARGET_INCLUDE_FOLDER}
     # include OpenSSL directories if present
     $<$<BOOL:${OPENSSL_FOUND}>:${OPENSSL_INCLUDE_DIR}>
+    ${Boost_INCLUDE_DIRS}
     # Any other extra include required
 )
 
@@ -62,6 +63,9 @@ target_include_directories(${TARGET_NAME}
 if(OPENSSL_FOUND)
   target_link_libraries(${TARGET_NAME} PUBLIC OpenSSL::SSL OpenSSL::Crypto)
 endif()
+
+# Add this after the OpenSSL linking section
+target_link_libraries(${TARGET_NAME} PUBLIC ${Boost_LIBRARIES})
 
 if(BUILD_TESTING)
   list(APPEND TEST_CASES
